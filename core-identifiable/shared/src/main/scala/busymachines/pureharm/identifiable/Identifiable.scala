@@ -18,7 +18,6 @@ package busymachines.pureharm.identifiable
 
 import scala.annotation.implicitNotFound
 
-
 /** @tparam T
   *   the type
   * @tparam ID
@@ -35,4 +34,4 @@ trait Identifiable[T, ID] {
   def fieldName: FieldName
 }
 
-object Identifiable
+object Identifiable extends IdentifiableScalaVersionSpecificCompanion
