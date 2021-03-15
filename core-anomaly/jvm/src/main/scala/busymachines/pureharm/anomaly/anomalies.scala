@@ -35,12 +35,16 @@ abstract class Anomalies(
   override val message:         String,
   override val firstAnomaly:    Anomaly,
   override val restOfAnomalies: Seq[Anomaly],
-) extends Exception(message) with AnomaliesBase with Product with Serializable {}
+  override val causedBy:        Option[Throwable] = Option.empty,
+) extends AnomalyLike(message, causedBy) with AnomaliesBase with Product with Serializable {}
 
 object Anomalies {
 
   def apply(id: AnomalyID, message: String, msg: Anomaly, msgs: Anomaly*): Anomalies =
-    AnomaliesImpl(id, message, msg, msgs.toList)
+    AnomaliesImpl(id, message, msg, msgs.toList, Option.empty)
+
+  def apply(id: AnomalyID, message: String, causedBy: Throwable, msg: Anomaly, msgs: Anomaly*): Anomalies =
+    AnomaliesImpl(id, message, msg, msgs.toList, Option(causedBy))
 }
 
 final private[pureharm] case class AnomaliesImpl(
@@ -48,4 +52,5 @@ final private[pureharm] case class AnomaliesImpl(
   override val message:         String,
   override val firstAnomaly:    Anomaly,
   override val restOfAnomalies: Seq[Anomaly],
-) extends Anomalies(id, message, firstAnomaly, restOfAnomalies) with Product with Serializable
+  override val causedBy:        Option[Throwable],
+) extends Anomalies(id, message, firstAnomaly, restOfAnomalies, causedBy) with Product with Serializable

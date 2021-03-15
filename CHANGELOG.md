@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Split out from [pureharm](https://github.com/busymachines/pureharm) as of version `0.0.7`.
 
+`busymachines.pureharm.anomaly`:
+- add `AnomalyLike` super-type that is inherited by `Anomaly`, `Catastrophe`, `Anomalies`, this allows
+  for easy non-anomaly catch-all that allows rethrowing.
+
 :warning: Source incompatible changes :warning::
 - delete deprecated `PhantomType` and `SafePhantomType`
 - delete package `busymachines.pureharm.phantom`, move to `busymachines.pureharm.sprout`

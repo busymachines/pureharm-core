@@ -17,8 +17,8 @@
 package busymachines.pureharm.anomaly
 
 abstract class NotImplementedCatastrophe(
-  override val message: String,
-  causedBy:             Option[Throwable] = None,
+  override val message:  String,
+  override val causedBy: Option[Throwable] = Option.empty,
 ) extends Catastrophe(message, causedBy) with Product with Serializable {
   override def id: AnomalyID = NotImplementedCatastropheID
 }

@@ -22,9 +22,9 @@ package busymachines.pureharm.anomaly
   * basis and at the same time not crash our application into oblivion.
   */
 abstract class Catastrophe(
-  override val message: String,
-  val causedBy:         Option[Throwable] = None,
-) extends Error(message, causedBy.orNull) with CatastropheBase with Product with Serializable {
+  override val message:  String,
+  override val causedBy: Option[Throwable],
+) extends AnomalyLike(message, causedBy) with CatastropheBase with Product with Serializable {
   override def id: AnomalyID = CatastropheID
 }
 

@@ -25,9 +25,7 @@ abstract class UnhandledCatastrophe(
 ) extends Catastrophe(message, Option(cause)) with Product with Serializable {
   override def id: AnomalyID = UnhandledCatastropheID
 
-  override def parameters: Parameters = params ++ Parameters(
-    "causedBy" -> cause.toString
-  )
+  override def parameters: Parameters = super.parameters ++ params
 }
 
 private[pureharm] case object UnhandledCatastropheID extends AnomalyID with Product with Serializable {

@@ -26,15 +26,9 @@ import scala.collection.immutable.Seq
   * of failure using this trait.
   */
 abstract class Anomaly(
-  override val message: String,
-  val causedBy:         Option[Throwable] = None,
-) extends Exception(message, causedBy.orNull) with AnomalyBase {
-
-  override def parameters: Anomaly.Parameters = causedBy match {
-    case None        => Anomaly.Parameters.empty
-    case Some(cause) => Anomaly.Parameters("causedBy" -> cause.toString)
-  }
-}
+  override val message:  String,
+  override val causedBy: Option[Throwable],
+) extends AnomalyLike(message, causedBy) with AnomalyBase with Product with Serializable
 
 /** Some suggested naming conventions are put here so that they're easily accessible.
   * These can also be found in the scaladoc of [[busymachines.pureharm.anomaly.MeaningfulAnomalies]]
@@ -124,7 +118,7 @@ final private[pureharm] case class AnomalyImpl(
   override val id:      AnomalyID = DefaultAnomalyID,
   override val message: String = Anomaly.AnomalyString,
   params:               Anomaly.Parameters = Anomaly.Parameters.empty,
-) extends Anomaly(message) {
+) extends Anomaly(message, Option.empty) {
   override val parameters: Anomaly.Parameters = super.parameters ++ params
 }
 
