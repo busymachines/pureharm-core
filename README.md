@@ -2,9 +2,11 @@
 
 ## modules
 
-The available modules are:
+See [changelog](./CHANGELOG.md).
 
-- `"com.busymachines" %% s"pureharm-core" % "0.1.0"`
+The available modules are.
+
+- `"com.busymachines" %% s"pureharm-core" % "0.1.0"`. Which in turn is split up into (if you do not need all of core)
     - `"com.busymachines" %% s"pureharm-core-sprout" % "0.1.0"`
         - [sprout](https://github.com/lorandszakacs/sprout/releases) `0.0.1`
         - [cats](https://github.com/typelevel/cats/releases) `2.4.2`
