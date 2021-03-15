@@ -91,17 +91,25 @@ lazy val root = project
   .in(file("."))
   .aggregate(
     coreJVM,
+    coreJS,
     `core-anomalyJVM`,
+    `core-anomalyJS`,
     `core-identifiableJVM`,
+    `core-identifiableJS`,
     `core-sproutJVM`,
+    `core-sproutJS`,
   )
   .enablePlugins(NoPublishPlugin)
   .enablePlugins(SonatypeCiReleasePlugin)
   .settings(commonSettings)
 
-lazy val core = crossProject(JVMPlatform)
+lazy val core = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core"))
   .settings(commonSettings)
+  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
+  .jsSettings(
+    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
+  )
   .settings(
     name := "pureharm-core",
     libraryDependencies ++= Seq(),
@@ -116,11 +124,17 @@ lazy val coreJVM = core.jvm.settings(
   javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
 )
 
+lazy val coreJS = core.js
+
 //=============================================================================
 
-lazy val `core-anomaly` = crossProject(JVMPlatform)
+lazy val `core-anomaly` = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core-anomaly"))
   .settings(commonSettings)
+  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
+  .jsSettings(
+    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
+  )
   .settings(
     name := "pureharm-core-anomaly",
     libraryDependencies ++= Seq(),
@@ -129,11 +143,17 @@ lazy val `core-anomaly` = crossProject(JVMPlatform)
 lazy val `core-anomalyJVM` = `core-anomaly`.jvm.settings(
   javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
 )
+
+lazy val `core-anomalyJS` = `core-anomaly`.js
 //=============================================================================
 
-lazy val `core-sprout` = crossProject(JVMPlatform)
+lazy val `core-sprout` = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core-sprout"))
   .settings(commonSettings)
+  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
+  .jsSettings(
+    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
+  )
   .settings(
     name := "pureharm-core-sprout",
     libraryDependencies ++= Seq(
@@ -145,11 +165,17 @@ lazy val `core-sprout` = crossProject(JVMPlatform)
 lazy val `core-sproutJVM` = `core-sprout`.jvm.settings(
   javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
 )
+
+lazy val `core-sproutJS` = `core-sprout`.js
 //=============================================================================
 
-lazy val `core-identifiable` = crossProject(JVMPlatform)
+lazy val `core-identifiable` = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core-identifiable"))
   .settings(commonSettings)
+  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
+  .jsSettings(
+    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
+  )
   .settings(
     name := "pureharm-core-identifiable",
     libraryDependencies ++= Seq(
@@ -171,7 +197,7 @@ lazy val `core-identifiableJVM` = `core-identifiable`.jvm.settings(
   javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
 )
 
-//=============================================================================
+lazy val `core-identifiableJS` = `core-identifiable`.js
 
 //=============================================================================
 //================================= Settings ==================================
