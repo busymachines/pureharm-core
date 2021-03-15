@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package busymachines.pureharm.anomaly
+package busymachines.pureharm
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 10 Jun 2019
+/** Convenience trait to mix in into your own domain specific
+  * modules for easy single-import experiences
+  *
+  * @author Lorand Szakacs, https://github.com/lorandszakacs
+  * @since 04 Apr 2019
   */
-trait AnomalyParamtersImplicits {
-
-  implicit final def anomalyParamValueStringWrapper(s: String): Anomaly.Parameter =
-    StringWrapper(s)
-
-  implicit final def anomalyParamValueSeqOfStringWrapper(ses: Seq[String]): Anomaly.Parameter =
-    SeqStringWrapper(ses.toVector)
-}
+trait PureharmCoreAliases
+  extends identifiable.PureharmIdentifiableAliases with anomaly.PureharmAnomalyAliases
+  with busymachines.pureharm.sprout.PureharmSproutAliases

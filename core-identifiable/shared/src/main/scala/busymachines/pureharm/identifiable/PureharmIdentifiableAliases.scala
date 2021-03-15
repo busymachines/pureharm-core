@@ -16,8 +16,10 @@
 
 package busymachines.pureharm.identifiable
 
-import busymachines.pureharm.sprout._
+trait PureharmIdentifiableAliases {
+  final type FieldName = busymachines.pureharm.identifiable.FieldName.Type
+  final val FieldName: busymachines.pureharm.identifiable.FieldName.type = busymachines.pureharm.identifiable.FieldName
 
-type FieldName = FieldName.Type
-object FieldName extends SproutSub[String]
-
+  final type Identifiable[T, ID] = busymachines.pureharm.identifiable.Identifiable[T, ID]
+  final val Identifiable: busymachines.pureharm.identifiable.Identifiable.type = busymachines.pureharm.identifiable.Identifiable
+}

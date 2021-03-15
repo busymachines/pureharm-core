@@ -16,4 +16,4 @@
 
 package busymachines.pureharm
 
-package object anomaly extends AnomalyParamtersImplicits
+package object anomaly extends PureharmAnomalyImplicits

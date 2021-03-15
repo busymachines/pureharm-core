@@ -21,7 +21,7 @@ import busymachines.pureharm.anomaly
 /** Mix this into your app's "core" package to get all these nice little
   * anomalies.
   */
-trait PureharmAnomalyTypeDefinitions {
+trait PureharmAnomalyAliases {
 
   final type AnomalyBase   = anomaly.AnomalyBase
   final type AnomaliesBase = anomaly.AnomaliesBase

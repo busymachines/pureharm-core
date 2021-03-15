@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package busymachines.pureharm
+package busymachines.pureharm.anomaly
 
-/** Convenience trait to mix in into your own domain specific
-  * modules for easy single-import experiences
-  *
-  * @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 04 Apr 2019
+/** @author Lorand Szakacs, https://github.com/lorandszakacs
+  * @since 10 Jun 2019
   */
-trait PureharmCoreTypeDefinitions extends busymachines.pureharm.sprout.PureharmSproutAliases {
-  final type FieldName = identifiable.FieldName.Type
-  final val FieldName: identifiable.FieldName.type = identifiable.FieldName
+trait PureharmAnomalyImplicits {
 
-  final type Identifiable[T, ID] = identifiable.Identifiable[T, ID]
-  final val Identifiable: identifiable.Identifiable.type = identifiable.Identifiable
+  implicit final def anomalyParamValueStringWrapper(s: String): Anomaly.Parameter =
+    StringWrapper(s)
+
+  implicit final def anomalyParamValueSeqOfStringWrapper(ses: Seq[String]): Anomaly.Parameter =
+    SeqStringWrapper(ses.toVector)
 }
