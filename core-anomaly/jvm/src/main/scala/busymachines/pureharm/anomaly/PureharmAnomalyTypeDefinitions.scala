@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Loránd Szakács
+ * Copyright 2019 BusyMachines
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,6 @@ import busymachines.pureharm.anomaly
 
 /** Mix this into your app's "core" package to get all these nice little
   * anomalies.
-  *
-  * @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 10 Jun 2019
   */
 trait PureharmAnomalyTypeDefinitions {
 

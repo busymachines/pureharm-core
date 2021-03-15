@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Loránd Szakács
+ * Copyright 2019 BusyMachines
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,9 +33,6 @@ package busymachines.pureharm.anomaly
   *
   * - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.InvalidInput]]
   *   - range: 400-499; e.g. pone_400, ptwo_476, pthree_499
-  *
-  * @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 11 Jun 2019
   */
 object MeaningfulAnomalies {
 

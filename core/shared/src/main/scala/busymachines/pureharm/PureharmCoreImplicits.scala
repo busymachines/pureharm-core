@@ -16,4 +16,14 @@
 
 package busymachines.pureharm
 
-package object sprout extends busymachines.pureharm.sprout.PureharmSproutAliases
+/** Recommened to mix into your root a-la-carte import package to get Show
+  * instances for all your usecases
+  */
+trait PureharmCoreImplicits {
+
+  implicit final def pureharmSproutShowGeneric[Old, New](implicit
+    show:    Show[Old],
+    oldType: OldType[Old, New],
+  ): Show[New] =
+    show.contramap(oldType.oldType)
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Loránd Szakács
+ * Copyright 2019 BusyMachines
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,6 @@ package busymachines.pureharm.anomaly
 
 import busymachines.pureharm.anomaly.Anomaly.Parameters
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 14 Jul 2020
-  */
 abstract class UnhandledCatastrophe(
   override val message: String,
   cause:                Throwable,

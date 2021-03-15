@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Loránd Szakács
+ * Copyright 2019 BusyMachines
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
 
 package busymachines.pureharm.identifiable
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 04 Apr 2019
-  */
 trait IdentifiableScalaVersionSpecificCompanion {
   import IdentifiableScalaVersionSpecificCompanion._
   import shapeless._

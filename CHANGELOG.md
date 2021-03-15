@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
-# 0.0.8
+# 0.1.0
 
-Split out from [pureharm](https://github.com/busymachines/pureharm). The modules `pureharm-core*`
-are the same as pureharm version `0.0.7`, both in terms of module naming, and source compat.
+Split out from [pureharm](https://github.com/busymachines/pureharm) as of version `0.0.7`.
+
+:warning: Source incompatible changes :warning::
+- delete deprecated `PhantomType` and `SafePhantomType`
+- delete package `busymachines.pureharm.phantom`, move to `busymachines.pureharm.sprout`
 
 Dependencies:
 - [sprout](https://github.com/lorandszakacs/sprout) `0.0.1`

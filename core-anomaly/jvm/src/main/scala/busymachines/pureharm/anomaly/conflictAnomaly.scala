@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Loránd Szakács
+ * Copyright 2019 BusyMachines
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
 
 package busymachines.pureharm.anomaly
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 11 Jun 2019
-  */
 abstract class ConflictAnomaly(
   override val message:  String,
   override val causedBy: Option[Throwable] = None,
