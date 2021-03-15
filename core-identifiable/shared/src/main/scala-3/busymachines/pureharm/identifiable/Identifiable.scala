@@ -14,18 +14,25 @@
  * limitations under the License.
  */
 
-package busymachines.pureharm
+package busymachines.pureharm.identifiable
 
-/** Convenience trait to mix in into your own domain specific
-  * modules for easy single-import experiences
-  *
+import scala.annotation.implicitNotFound
+
+
+/** @tparam T
+  *   the type
+  * @tparam ID
+  *   the value by which our value of type ``T`` can be uniquely identified
   * @author Lorand Szakacs, https://github.com/lorandszakacs
   * @since 04 Apr 2019
   */
-trait PureharmCoreTypeDefinitions extends busymachines.pureharm.sprout.PureharmSproutAliases {
-  final type FieldName = identifiable.FieldName.Type
-  final val FieldName: identifiable.FieldName.type = identifiable.FieldName
+@implicitNotFound(
+  "If a case class T, has a field called 'id of type ID then an Identifiable[T, ID] will be generated for case class, otherwise, please provide one"
+)
+trait Identifiable[T, ID] {
+  def id(t: T): ID
 
-  final type Identifiable[T, ID] = identifiable.Identifiable[T, ID]
-  final val Identifiable: identifiable.Identifiable.type = identifiable.Identifiable
+  def fieldName: FieldName
 }
+
+object Identifiable

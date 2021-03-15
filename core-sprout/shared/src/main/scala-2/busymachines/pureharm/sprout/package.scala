@@ -16,16 +16,4 @@
 
 package busymachines.pureharm
 
-/** Convenience trait to mix in into your own domain specific
-  * modules for easy single-import experiences
-  *
-  * @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 04 Apr 2019
-  */
-trait PureharmCoreTypeDefinitions extends busymachines.pureharm.sprout.PureharmSproutAliases {
-  final type FieldName = identifiable.FieldName.Type
-  final val FieldName: identifiable.FieldName.type = identifiable.FieldName
-
-  final type Identifiable[T, ID] = identifiable.Identifiable[T, ID]
-  final val Identifiable: identifiable.Identifiable.type = identifiable.Identifiable
-}
+package object sprout extends busymachines.pureharm.sprout.PureharmSproutAliases

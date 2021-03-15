@@ -1,6 +1,3 @@
-import sbtcrossproject.{crossProject, CrossType}
-import sbtghactions.UseRef
-
 //=============================================================================
 //============================== build details ================================
 //=============================================================================
@@ -16,7 +13,7 @@ val Scala3RC1 = "3.0.0-RC1"
 //============================ publishing details =============================
 //=============================================================================
 
-ThisBuild / baseVersion  := "0.1.0"
+ThisBuild / baseVersion  := "0.0.8"
 ThisBuild / organization := "com.busymachines"
 ThisBuild / homepage     := Option(url("https://github.com/busymachines/pureharm-core"))
 
@@ -25,7 +22,7 @@ ThisBuild / publishFullName := "Loránd Szakács"
 ThisBuild / scmInfo := Option(
   ScmInfo(
     browseUrl  = url("https://github.com/busymachines/pureharm-core"),
-    connection = "git@github.com:busymachines/pureharm-core.git"
+    connection = "git@github.com:busymachines/pureharm-core.git",
   )
 )
 
@@ -41,7 +38,7 @@ ThisBuild / developers := List(
     id    = "lorandszakacs",
     name  = "Loránd Szakács",
     email = "lorand.szakacs@protonmail.com",
-    url   = new java.net.URL("https://github.com/lorandszakacs")
+    url   = new java.net.URL("https://github.com/lorandszakacs"),
   )
 )
 
@@ -54,13 +51,13 @@ ThisBuild / spiewakCiReleaseSnapshots := false
 ThisBuild / spiewakMainBranches       := List("main")
 ThisBuild / Test / publishArtifact    := false
 
-ThisBuild / scalaVersion       := Scala3RC1
-ThisBuild / crossScalaVersions := List(Scala3RC1, Scala213)
+ThisBuild / scalaVersion       := Scala213
+ThisBuild / crossScalaVersions := List(Scala213, Scala3RC1)
 
 //required for binary compat checks
 ThisBuild / versionIntroduced := Map(
-  Scala213  -> "0.1.0",
-  Scala3RC1 -> "0.1.0"
+  Scala213  -> "0.0.8",
+  Scala3RC1 -> "0.0.8",
 )
 
 //=============================================================================
@@ -69,8 +66,8 @@ ThisBuild / versionIntroduced := Map(
 
 val shapeless2V = "2.3.3"    //https://github.com/milessabin/shapeless/releases
 val shapeless3V = "3.0.0-M1" //https://github.com/milessabin/shapeless/releases
-val catsV = "2.4.2"          //https://github.com/typelevel/cats/releases
-val sproutV = "0.0.1"        //https://github.com/lorandszakacs/sprout/releases
+val catsV       = "2.4.2"    //https://github.com/typelevel/cats/releases
+val sproutV     = "0.0.1"    //https://github.com/lorandszakacs/sprout/releases
 //=============================================================================
 //============================== Project details ==============================
 //=============================================================================
@@ -81,21 +78,23 @@ lazy val root = project
     coreJVM,
     `core-anomalyJVM`,
     `core-identifiableJVM`,
-    `core-phantomJVM`,
+    `core-sproutJVM`,
   )
   .enablePlugins(NoPublishPlugin)
   .enablePlugins(SonatypeCiReleasePlugin)
   .settings(commonSettings)
 
 lazy val core = crossProject(JVMPlatform)
+  .in(file("./core"))
   .settings(commonSettings)
   .settings(
     name := "pureharm-core",
-    libraryDependencies ++= Seq()
-  ).dependsOn(
+    libraryDependencies ++= Seq(),
+  )
+  .dependsOn(
     `core-anomaly`,
     `core-identifiable`,
-    `core-phantom`,
+    `core-sprout`,
   )
 
 lazy val coreJVM = core.jvm.settings(
@@ -105,33 +104,52 @@ lazy val coreJVM = core.jvm.settings(
 //=============================================================================
 
 lazy val `core-anomaly` = crossProject(JVMPlatform)
+  .in(file("./core-anomaly"))
   .settings(commonSettings)
   .settings(
     name := "pureharm-core-anomaly",
-    libraryDependencies ++= Seq()
+    libraryDependencies ++= Seq(),
   )
 
 lazy val `core-anomalyJVM` = `core-anomaly`.jvm.settings(
   javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
 )
+//=============================================================================
 
+lazy val `core-sprout` = crossProject(JVMPlatform)
+  .in(file("./core-sprout"))
+  .settings(commonSettings)
+  .settings(
+    name := "pureharm-core-sprout",
+    libraryDependencies ++= Seq(
+      "org.typelevel"     %%% "cats-core" % catsV   withSources (),
+      "com.lorandszakacs" %%% "sprout"    % sproutV withSources (),
+    ),
+  )
+
+lazy val `core-sproutJVM` = `core-sprout`.jvm.settings(
+  javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
+)
 //=============================================================================
 
 lazy val `core-identifiable` = crossProject(JVMPlatform)
+  .in(file("./core-identifiable"))
   .settings(commonSettings)
   .settings(
     name := "pureharm-core-identifiable",
     libraryDependencies ++= Seq(
-
     ) ++ (if (isDotty.value) {
             Seq(
             )
           }
           else {
             Seq(
-              "com.chuusai"       %%% "shapeless"   % shapeless2V withSources()
+              "com.chuusai" %%% "shapeless" % shapeless2V withSources ()
             )
           }),
+  )
+  .dependsOn(
+    `core-sprout`
   )
 
 lazy val `core-identifiableJVM` = `core-identifiable`.jvm.settings(
@@ -139,22 +157,6 @@ lazy val `core-identifiableJVM` = `core-identifiable`.jvm.settings(
 )
 
 //=============================================================================
-
-lazy val `core-phantom` = crossProject(JVMPlatform)
-  .settings(commonSettings)
-  .settings(
-    name := "pureharm-core-phantom",
-    libraryDependencies ++= Seq(
-      "org.typelevel"     %%% "cats-core"   % catsV       withSources(),
-      "com.lorandszakacs" %%% "sprout"      % sproutV     withSources(),
-    )
-  )
-
-//=============================================================================
-
-lazy val `core-phantomJVM` = `core-phantom`.jvm.settings(
-  javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
-)
 
 //=============================================================================
 //================================= Settings ==================================
@@ -172,5 +174,5 @@ lazy val commonSettings = Seq(
     List(CrossType.Pure, CrossType.Full).flatMap(
       _.sharedSrcDir(baseDirectory.value, "test").toList.map(f => file(f.getPath + major))
     )
-  }
+  },
 )
