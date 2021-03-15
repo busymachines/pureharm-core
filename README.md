@@ -1,8 +1,8 @@
 # pureharm-core
 
-## modules
-
 See [changelog](./CHANGELOG.md).
+
+## modules
 
 The available modules are.
 
