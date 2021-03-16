@@ -17,7 +17,7 @@ The available modules are.
 
 ## usage
 
-Under construction. See [release notes](https://github.com/busymachines/pureharm/releases) and tests for examples.
+Under construction. See [release notes](https://github.com/busymachines/pureharm-core/releases) and tests for examples.
 
 ## Copyright and License
 
