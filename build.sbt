@@ -51,7 +51,6 @@ ThisBuild / scmInfo := Option(
   * ThisBuild / publishGithubUser := "lorandszakacs"
   * }}}
   */
-ThisBuild / publishFullName := "Loránd Szakács"
 ThisBuild / developers := List(
   Developer(
     id    = "lorandszakacs",
