@@ -16,10 +16,7 @@
 
 package busymachines.pureharm.anomaly
 
-/** [[java.lang.Error]] is a reasonable choice for a super-class.
-  * It's not caught by NonFatal(_)pattern matches. Which means that
-  * we can properly propagate "irrecoverable errors" one a per "request"
-  * basis and at the same time not crash our application into oblivion.
+/** Use as base class to signal irrecoverable __domain__ specific errors.
   */
 abstract class Catastrophe(
   override val message:  String,

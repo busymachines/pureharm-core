@@ -16,7 +16,7 @@
 
 package busymachines.pureharm.anomaly
 
-/** Nothing from this file should ever escape [[busymachines.pureharm]]
+/** Nothing from this file should ever escape busymachines.pureharm
   */
 private[pureharm] trait AnomalyConstructors[Resulting <: AnomalyBase] {
   def apply(id: AnomalyID): Resulting
