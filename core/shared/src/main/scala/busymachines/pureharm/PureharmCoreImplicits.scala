@@ -20,4 +20,7 @@ package busymachines.pureharm
   * instances for all your usecases
   */
 trait PureharmCoreImplicits
-  extends anomaly.PureharmAnomalyImplicits with busymachines.pureharm.sprout.PureharmSproutImplicits
+  extends anomaly.PureharmAnomalyImplicits with busymachines.pureharm.sprout.PureharmSproutImplicits {
+
+    implicit val pureharmThrowableShow: cats.Show[Throwable] = cats.Show.fromToString[Throwable]
+  }
