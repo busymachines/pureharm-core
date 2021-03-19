@@ -20,8 +20,9 @@ trait PureharmSproutImplicits {
   import cats.Show
   import cats.implicits._
 
-  implicit final def pureharmSproutShowGeneric[Old, New](implicit
+  implicit def pureharmSproutShowGeneric[Old, New](implicit
     show:    Show[Old],
     oldType: OldType[Old, New],
   ): Show[New] = show.contramap(oldType.oldType)
+
 }

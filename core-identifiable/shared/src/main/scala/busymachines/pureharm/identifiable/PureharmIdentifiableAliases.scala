@@ -21,5 +21,7 @@ trait PureharmIdentifiableAliases {
   final val FieldName: busymachines.pureharm.identifiable.FieldName.type = busymachines.pureharm.identifiable.FieldName
 
   final type Identifiable[T, ID] = busymachines.pureharm.identifiable.Identifiable[T, ID]
-  final val Identifiable: busymachines.pureharm.identifiable.Identifiable.type = busymachines.pureharm.identifiable.Identifiable
+
+  final val Identifiable: busymachines.pureharm.identifiable.Identifiable.type =
+    busymachines.pureharm.identifiable.Identifiable
 }
