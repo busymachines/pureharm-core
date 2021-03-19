@@ -21,7 +21,7 @@ Newly cross published for both Scala 2.13, and 3.0.0-RC1 on JVM and JS runtimes.
 
 :warning: Source incompatible changes :warning::
 - delete deprecated `PhantomType` and `SafePhantomType`
-- delete package `busymachines.pureharm.phantom`, move to `busymachines.pureharm.sprout`
+- delete package `busymachines.pureharm.phantom`, move sprouts to `busymachines.pureharm.sprout`
 
 Dependencies:
 - [sprout](https://github.com/lorandszakacs/sprout) `0.0.1`
