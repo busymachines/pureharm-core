@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
+# 0.2.0
+
+- remove `Show[New]` instances for any `OldType[Old, New]`, it seriously tripped up type inference
+
 # 0.1.0
 
 Split out from [pureharm](https://github.com/busymachines/pureharm) as of version `0.0.7`.
