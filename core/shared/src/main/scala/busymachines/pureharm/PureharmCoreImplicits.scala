@@ -19,8 +19,6 @@ package busymachines.pureharm
 /** Recommened to mix into your root a-la-carte import package to get Show
   * instances for all your usecases
   */
-trait PureharmCoreImplicits
-  extends anomaly.PureharmAnomalyImplicits with busymachines.pureharm.sprout.PureharmSproutImplicits {
-
+trait PureharmCoreImplicits extends anomaly.PureharmAnomalyImplicits {
   implicit val pureharmThrowableShow: cats.Show[Throwable] = cats.Show.fromToString[Throwable]
 }
