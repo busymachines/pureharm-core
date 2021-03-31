@@ -8,8 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # unreleased
 
 # 0.2.0
-
+- add alias for `sprout.Burry` in `PureharmSproutAliases`
+- [pureharm-core-anomaly] now depends on cats. Move `Show[Throwable]` instance to anomaly package. The change is source compatible if you mixed in AnomalyImplicits.
 - remove `Show[New]` instances for any `OldType[Old, New]`, it seriously tripped up type inference
+
+New Scala versions:
+- 3.0.0-RC2
+
+Dependency upgrades:
+- [cats](https://github.com/typelevel/cats) `2.5.0`
+- [sprout](https://github.com/lorandszakacs/sprout) `0.0.2`
 
 # 0.1.0
 
