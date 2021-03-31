@@ -24,6 +24,7 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 
 val Scala213  = "2.13.5"
 val Scala3RC1 = "3.0.0-RC1"
+val Scala3RC2 = "3.0.0-RC2"
 
 //=============================================================================
 //============================ publishing details =============================
@@ -65,17 +66,18 @@ ThisBuild / licenses   := List("Apache-2.0" -> url("http://www.apache.org/licens
 
 //until we get to 1.0.0, we keep strictSemVer false
 ThisBuild / strictSemVer              := false
-ThisBuild / spiewakCiReleaseSnapshots := true
+ThisBuild / spiewakCiReleaseSnapshots := false
 ThisBuild / spiewakMainBranches       := List("main")
 ThisBuild / Test / publishArtifact    := false
 
 ThisBuild / scalaVersion       := Scala213
-ThisBuild / crossScalaVersions := List(Scala213, Scala3RC1)
+ThisBuild / crossScalaVersions := List(Scala213, Scala3RC1, Scala3RC2)
 
 //required for binary compat checks
 ThisBuild / versionIntroduced := Map(
   Scala213  -> "0.1.0",
   Scala3RC1 -> "0.1.0",
+  Scala3RC2 -> "0.2.0",
 )
 
 //=============================================================================
@@ -85,6 +87,7 @@ ThisBuild / versionIntroduced := Map(
 val shapeless2V = "2.3.3"    //https://github.com/milessabin/shapeless/releases
 val catsV       = "2.4.2"    //https://github.com/typelevel/cats/releases
 val sproutV     = "0.0.1"    //https://github.com/lorandszakacs/sprout/releases
+
 //=============================================================================
 //============================== Project details ==============================
 //=============================================================================
