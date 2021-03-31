@@ -84,9 +84,10 @@ ThisBuild / versionIntroduced := Map(
 //================================ Dependencies ===============================
 //=============================================================================
 // format: off
-val shapeless2V    = "2.3.3"    //https://github.com/milessabin/shapeless/releases
-val catsV          = "2.5.0"    //https://github.com/typelevel/cats/releases
-val sproutV        = "0.0.2"    //https://github.com/lorandszakacs/sprout/releases
+val shapeless2V      = "2.3.3"    //https://github.com/milessabin/shapeless/releases
+val catsV            = "2.5.0"    //https://github.com/typelevel/cats/releases
+val sproutV          = "0.0.2"    //https://github.com/lorandszakacs/sprout/releases
+val munitCatsEffect  = "1.0.1"    //https://github.com/typelevel/munit-cats-effect/releases
 // format: on
 //=============================================================================
 //============================== Project details ==============================
@@ -144,6 +145,7 @@ lazy val `core-anomaly` = crossProject(JVMPlatform, JSPlatform)
     name := "pureharm-core-anomaly",
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsV withSources(),
+      "org.typelevel" %%% "munit-cats-effect-2" % munitCatsEffect % Test withSources()
     ),
   )
 
@@ -211,6 +213,8 @@ lazy val `core-identifiableJS` = `core-identifiable`.js
 //=============================================================================
 
 lazy val commonSettings = Seq(
+  testFrameworks += new TestFramework("munit.Framework"),
+
   Compile / unmanagedSourceDirectories ++= {
     val major = if (isDotty.value) "-3" else "-2"
     List(CrossType.Pure, CrossType.Full).flatMap(
