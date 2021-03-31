@@ -85,7 +85,7 @@ ThisBuild / versionIntroduced := Map(
 //=============================================================================
 
 val shapeless2V = "2.3.3"    //https://github.com/milessabin/shapeless/releases
-val catsV       = "2.4.2"    //https://github.com/typelevel/cats/releases
+val catsV       = "2.5.0"    //https://github.com/typelevel/cats/releases
 val sproutV     = "0.0.1"    //https://github.com/lorandszakacs/sprout/releases
 
 //=============================================================================
