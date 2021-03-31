@@ -21,6 +21,8 @@ package busymachines.pureharm.anomaly
   */
 trait PureharmAnomalyImplicits {
 
+  implicit val pureharmThrowableShow: cats.Show[Throwable] = cats.Show.fromToString[Throwable]
+
   implicit final def anomalyParamValueStringWrapper(s: String): Anomaly.Parameter =
     StringWrapper(s)
 

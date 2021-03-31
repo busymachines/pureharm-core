@@ -17,6 +17,7 @@
 package busymachines.pureharm.sprout
 
 trait PureharmSproutAliases {
+  type Burry[O]                 = _root_.sprout.Burry[O]
   type Sprout[O]                = _root_.sprout.Sprout[O]
   type SproutSub[O]             = _root_.sprout.SproutSub[O]
   type SproutRefined[O, E]      = _root_.sprout.SproutRefined[O, E]

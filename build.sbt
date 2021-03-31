@@ -139,7 +139,9 @@ lazy val `core-anomaly` = crossProject(JVMPlatform, JSPlatform)
   )
   .settings(
     name := "pureharm-core-anomaly",
-    libraryDependencies ++= Seq(),
+    libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-core" % catsV withSources(),
+    ),
   )
 
 lazy val `core-anomalyJVM` = `core-anomaly`.jvm.settings(
