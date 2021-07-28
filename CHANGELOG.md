@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
+# 0.3.0
+
+This is the first release for stable Scala 3!
+
 Scala versions:
 - add `2.13.6` w/ `-Xsource:3` compiler flag.
 - add support for `3.0.1`
@@ -16,7 +20,7 @@ Dependency upgrades:
 - [cats](https://github.com/typelevel/cats) `2.6.2`
 - [sprout](https://github.com/lorandszakacs/sprout) `0.0.5`
 
-### internal
+### internals
 - bump scalafmt to `3.0.0-RC6` — from `2.7.5`
 - bump sbt to `1.5.5`
 - bump sbt-spiewak to `0.21.0`
