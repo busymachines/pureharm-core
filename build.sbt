@@ -112,7 +112,6 @@ lazy val root = project
 lazy val core = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core"))
   .settings(commonSettings)
-  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
   .jsSettings(
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
   )
@@ -137,7 +136,6 @@ lazy val coreJS = core.js
 lazy val `core-anomaly` = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core-anomaly"))
   .settings(commonSettings)
-  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
   .jsSettings(
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
   )
@@ -160,7 +158,6 @@ lazy val `core-anomalyJS` = `core-anomaly`.js
 lazy val `core-sprout` = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core-sprout"))
   .settings(commonSettings)
-  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
   .jsSettings(
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
   )
@@ -183,7 +180,6 @@ lazy val `core-sproutJS` = `core-sprout`.js
 lazy val `core-identifiable` = crossProject(JVMPlatform, JSPlatform)
   .in(file("./core-identifiable"))
   .settings(commonSettings)
-  .settings(dottyJsSettings(ThisBuild / crossScalaVersions))
   .jsSettings(
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
   )
@@ -214,18 +210,4 @@ lazy val `core-identifiableJS` = `core-identifiable`.js
 //================================= Settings ==================================
 //=============================================================================
 
-lazy val commonSettings = Seq(
-  testFrameworks += new TestFramework("munit.Framework"),
-  Compile / unmanagedSourceDirectories ++= {
-    val major = if (isDotty.value) "-3" else "-2"
-    List(CrossType.Pure, CrossType.Full).flatMap(
-      _.sharedSrcDir(baseDirectory.value, "main").toList.map(f => file(f.getPath + major))
-    )
-  },
-  Test / unmanagedSourceDirectories ++= {
-    val major = if (isDotty.value) "-3" else "-2"
-    List(CrossType.Pure, CrossType.Full).flatMap(
-      _.sharedSrcDir(baseDirectory.value, "test").toList.map(f => file(f.getPath + major))
-    )
-  },
-)
+lazy val commonSettings = Seq()
