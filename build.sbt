@@ -33,10 +33,10 @@ val Scala3RC2 = "3.0.0-RC2"
 //see: https://github.com/xerial/sbt-sonatype#buildsbt
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 
-ThisBuild / baseVersion  := "0.2"
-ThisBuild / organization := "com.busymachines"
+ThisBuild / baseVersion      := "0.2"
+ThisBuild / organization     := "com.busymachines"
 ThisBuild / organizationName := "BusyMachines"
-ThisBuild / homepage     := Option(url("https://github.com/busymachines/pureharm-core"))
+ThisBuild / homepage         := Option(url("https://github.com/busymachines/pureharm-core"))
 
 ThisBuild / scmInfo := Option(
   ScmInfo(
@@ -45,8 +45,8 @@ ThisBuild / scmInfo := Option(
   )
 )
 
-/** I want my email. So I put this here. To reduce a few lines of code,
-  * the sbt-spiewak plugin generates this (except email) from these two settings:
+/** I want my email. So I put this here. To reduce a few lines of code, the sbt-spiewak plugin generates this (except
+  * email) from these two settings:
   * {{{
   * ThisBuild / publishFullName   := "Loránd Szakács"
   * ThisBuild / publishGithubUser := "lorandszakacs"
@@ -61,7 +61,7 @@ ThisBuild / developers := List(
   )
 )
 
-ThisBuild / startYear := Some(2019)
+ThisBuild / startYear  := Some(2019)
 ThisBuild / licenses   := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
 //until we get to 1.0.0, we keep strictSemVer false
@@ -144,8 +144,8 @@ lazy val `core-anomaly` = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "pureharm-core-anomaly",
     libraryDependencies ++= Seq(
-      "org.typelevel" %%% "cats-core" % catsV withSources(),
-      "org.typelevel" %%% "munit-cats-effect-2" % munitCatsEffect % Test withSources()
+      "org.typelevel" %%% "cats-core"           % catsV withSources (),
+      "org.typelevel" %%% "munit-cats-effect-2" % munitCatsEffect % Test withSources (),
     ),
   )
 
@@ -154,6 +154,7 @@ lazy val `core-anomalyJVM` = `core-anomaly`.jvm.settings(
 )
 
 lazy val `core-anomalyJS` = `core-anomaly`.js
+
 //=============================================================================
 
 lazy val `core-sprout` = crossProject(JVMPlatform, JSPlatform)
@@ -176,6 +177,7 @@ lazy val `core-sproutJVM` = `core-sprout`.jvm.settings(
 )
 
 lazy val `core-sproutJS` = `core-sprout`.js
+
 //=============================================================================
 
 lazy val `core-identifiable` = crossProject(JVMPlatform, JSPlatform)
@@ -214,7 +216,6 @@ lazy val `core-identifiableJS` = `core-identifiable`.js
 
 lazy val commonSettings = Seq(
   testFrameworks += new TestFramework("munit.Framework"),
-
   Compile / unmanagedSourceDirectories ++= {
     val major = if (isDotty.value) "-3" else "-2"
     List(CrossType.Pure, CrossType.Full).flatMap(

@@ -16,11 +16,12 @@
 
 package busymachines.pureharm
 
-/** Convenience trait to mix in into your own domain specific
-  * modules for easy single-import experiences
+/** Convenience trait to mix in into your own domain specific modules for easy single-import experiences
   *
-  * @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 04 Apr 2019
+  * @author
+  *   Lorand Szakacs, https://github.com/lorandszakacs
+  * @since 04
+  *   Apr 2019
   */
 trait PureharmCoreAliases
   extends identifiable.PureharmIdentifiableAliases with anomaly.PureharmAnomalyAliases

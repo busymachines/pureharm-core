@@ -27,16 +27,16 @@ object InvalidInputAnomaly
   extends InvalidInputAnomaly(MeaningfulAnomalies.InvalidInputMsg, None) with SingletonAnomalyProduct
   with AnomalyConstructors[InvalidInputAnomaly] {
 
-  override def apply(id:         AnomalyID):            InvalidInputAnomaly =
+  override def apply(id:         AnomalyID): InvalidInputAnomaly =
     InvalidInputAnomalyImpl(id = id)
 
-  override def apply(message:    String):               InvalidInputAnomaly =
+  override def apply(message:    String): InvalidInputAnomaly =
     InvalidInputAnomalyImpl(message = message)
 
   override def apply(parameters: Anomaly.Parameters): InvalidInputAnomaly =
     InvalidInputAnomalyImpl(params = parameters)
 
-  override def apply(id:         AnomalyID, message: String): InvalidInputAnomaly =
+  override def apply(id:         AnomalyID, message:    String): InvalidInputAnomaly =
     InvalidInputAnomalyImpl(id = id, message = message)
 
   override def apply(id:         AnomalyID, parameters: Anomaly.Parameters): InvalidInputAnomaly =
@@ -45,7 +45,7 @@ object InvalidInputAnomaly
   override def apply(message:    String, parameters:    Anomaly.Parameters): InvalidInputAnomaly =
     InvalidInputAnomalyImpl(message = message, params = parameters)
 
-  override def apply(id:         AnomalyID, message: String, parameters: Anomaly.Parameters): InvalidInputAnomaly =
+  override def apply(id:         AnomalyID, message:    String, parameters: Anomaly.Parameters): InvalidInputAnomaly =
     InvalidInputAnomalyImpl(id = id, message = message, params = parameters)
 
   override def apply(a:          AnomalyBase): InvalidInputAnomaly =
@@ -53,10 +53,10 @@ object InvalidInputAnomaly
 }
 
 final private[pureharm] case class InvalidInputAnomalyImpl(
-  override val id:       AnomalyID = InvalidInputAnomalyID,
-  override val message:  String = MeaningfulAnomalies.InvalidInputMsg,
+  override val id:       AnomalyID          = InvalidInputAnomalyID,
+  override val message:  String             = MeaningfulAnomalies.InvalidInputMsg,
   params:                Anomaly.Parameters = Anomaly.Parameters.empty,
-  override val causedBy: Option[Throwable] = None,
+  override val causedBy: Option[Throwable]  = None,
 ) extends InvalidInputAnomaly(message, causedBy) with Product with Serializable {
   override val parameters: Anomaly.Parameters = super.parameters ++ params
 }

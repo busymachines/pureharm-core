@@ -18,35 +18,36 @@ package busymachines.pureharm.anomaly
 
 import scala.collection.immutable.Seq
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 11 Jun 2019
+/** @author
+  *   Lorand Szakacs, https://github.com/lorandszakacs
+  * @since 11
+  *   Jun 2019
   */
 
-/** You should express your business logic expected ways
-  * of failure using this trait.
+/** You should express your business logic expected ways of failure using this trait.
   */
 abstract class Anomaly(
   override val message:  String,
   override val causedBy: Option[Throwable],
 ) extends AnomalyLike(message, causedBy) with AnomalyBase with Product with Serializable
 
-/** Some suggested naming conventions are put here so that they're easily accessible.
-  * These can also be found in the scaladoc of [[busymachines.pureharm.anomaly.MeaningfulAnomalies]]
+/** Some suggested naming conventions are put here so that they're easily accessible. These can also be found in the
+  * scaladoc of [[busymachines.pureharm.anomaly.MeaningfulAnomalies]]
   *
-  * - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.NotFound]]
-  *   - range: 000-099; e.g. pone_001, ptwo_076, pthree_099
+  *   - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.NotFound]]
+  *     - range: 000-099; e.g. pone_001, ptwo_076, pthree_099
   *
-  * - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.Unauthorized]]
-  *   - range: 100-199; e.g. pone_100, ptwo_176, pthree_199
+  *   - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.Unauthorized]]
+  *     - range: 100-199; e.g. pone_100, ptwo_176, pthree_199
   *
-  * - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.Forbidden]]
-  *   - range: 200-299; e.g. pone_200, ptwo_276, pthree_299
+  *   - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.Forbidden]]
+  *     - range: 200-299; e.g. pone_200, ptwo_276, pthree_299
   *
-  * - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.Denied]]
-  *   - range: 300-399; e.g. pone_300, ptwo_376, pthree_399
+  *   - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.Denied]]
+  *     - range: 300-399; e.g. pone_300, ptwo_376, pthree_399
   *
-  * - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.InvalidInput]]
-  *   - range: 400-499; e.g. pone_400, ptwo_476, pthree_499
+  *   - [[busymachines.pureharm.anomaly.MeaningfulAnomalies.InvalidInput]]
+  *     - range: 400-499; e.g. pone_400, ptwo_476, pthree_499
   */
 trait AnomalyID extends Product with Serializable with Equals {
   def name: String
@@ -75,11 +76,11 @@ object Anomaly extends AnomalyConstructors[Anomaly] {
 
   type Parameters = Map[String, Parameter]
 
-  /** the reason why this type signature does not return Parameters is a pragmatic one.
-    * Intellij does not infer it correctly in the IDE and yields a false negative.
+  /** the reason why this type signature does not return Parameters is a pragmatic one. Intellij does not infer it
+    * correctly in the IDE and yields a false negative.
     *
-    * As far as the client code is concerned this is the same, and scalac properly
-    * compiles both versions, so we'll keep the one which causes the least misery.
+    * As far as the client code is concerned this is the same, and scalac properly compiles both versions, so we'll keep
+    * the one which causes the least misery.
     *
     * Once intellij fixes this (need to look for issue) we can have cleaner code here
     */
@@ -89,16 +90,16 @@ object Anomaly extends AnomalyConstructors[Anomaly] {
     def empty: Map[String, StringOrSeqString] = Map.empty[String, Parameter]
   }
 
-  override def apply(id:         AnomalyID):            Anomaly             =
+  override def apply(id:         AnomalyID): Anomaly =
     AnomalyImpl(id = id)
 
-  override def apply(message:    String):               Anomaly             =
+  override def apply(message:    String): Anomaly =
     AnomalyImpl(message = message)
 
   override def apply(parameters: Anomaly.Parameters): Anomaly =
     AnomalyImpl(params = parameters)
 
-  override def apply(id:         AnomalyID, message: String): Anomaly =
+  override def apply(id:         AnomalyID, message:    String): Anomaly =
     AnomalyImpl(id = id, message = message)
 
   override def apply(id:         AnomalyID, parameters: Anomaly.Parameters): Anomaly =
@@ -107,7 +108,7 @@ object Anomaly extends AnomalyConstructors[Anomaly] {
   override def apply(message:    String, parameters:    Anomaly.Parameters): Anomaly =
     AnomalyImpl(message = message, params = parameters)
 
-  override def apply(id:         AnomalyID, message: String, parameters: Anomaly.Parameters): Anomaly =
+  override def apply(id:         AnomalyID, message:    String, parameters: Anomaly.Parameters): Anomaly =
     AnomalyImpl(id = id, message = message, params = parameters)
 
   override def apply(a:          AnomalyBase): Anomaly =
@@ -115,8 +116,8 @@ object Anomaly extends AnomalyConstructors[Anomaly] {
 }
 
 final private[pureharm] case class AnomalyImpl(
-  override val id:      AnomalyID = DefaultAnomalyID,
-  override val message: String = Anomaly.AnomalyString,
+  override val id:      AnomalyID          = DefaultAnomalyID,
+  override val message: String             = Anomaly.AnomalyString,
   params:               Anomaly.Parameters = Anomaly.Parameters.empty,
 ) extends Anomaly(message, Option.empty) {
   override val parameters: Anomaly.Parameters = super.parameters ++ params
@@ -134,9 +135,8 @@ trait AnomalyBase extends Product with Serializable {
   def parameters: Anomaly.Parameters = Anomaly.Parameters.empty
 }
 
-/** This is a hack until dotty (scala 3.0) comes along with union types.
-  * Until then, boiler plate freedom is given by the implicit
-  * conversions found in the package object
+/** This is a hack until dotty (scala 3.0) comes along with union types. Until then, boiler plate freedom is given by
+  * the implicit conversions found in the package object
   */
 sealed trait StringOrSeqString extends Product with Serializable
 

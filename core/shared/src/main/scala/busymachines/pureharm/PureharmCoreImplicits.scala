@@ -16,7 +16,6 @@
 
 package busymachines.pureharm
 
-/** Recommened to mix into your root a-la-carte import package to get Show
-  * instances for all your usecases
+/** Recommened to mix into your root a-la-carte import package to get Show instances for all your usecases
   */
 trait PureharmCoreImplicits extends anomaly.PureharmAnomalyImplicits

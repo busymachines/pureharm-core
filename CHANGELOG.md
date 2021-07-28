@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
+### internal
+- bump scalafmt to 3.0.0-RC6 — from 2.7.5
+
 # 0.2.0
 - add alias for `sprout.Burry` in `PureharmSproutAliases`
 - remove `Show[New]` instances for any `OldType[Old, New]`, it seriously tripped up type inference

@@ -16,8 +16,10 @@
 
 package busymachines.pureharm.anomaly
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 11 Jun 2019
+/** @author
+  *   Lorand Szakacs, https://github.com/lorandszakacs
+  * @since 11
+  *   Jun 2019
   */
 abstract class AnomalyLike(
   override val message: String,
