@@ -22,9 +22,8 @@ addCommandAlias("github-gen", "githubWorkflowGenerate")
 addCommandAlias("github-check", "githubWorkflowCheck")
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-val Scala213  = "2.13.5"
-val Scala3RC1 = "3.0.0-RC1"
-val Scala3RC2 = "3.0.0-RC2"
+val Scala213 = "2.13.6"
+val Scala3   = "3.0.1"
 
 //=============================================================================
 //============================ publishing details =============================
@@ -33,7 +32,7 @@ val Scala3RC2 = "3.0.0-RC2"
 //see: https://github.com/xerial/sbt-sonatype#buildsbt
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 
-ThisBuild / baseVersion      := "0.2"
+ThisBuild / baseVersion      := "0.3"
 ThisBuild / organization     := "com.busymachines"
 ThisBuild / organizationName := "BusyMachines"
 ThisBuild / homepage         := Option(url("https://github.com/busymachines/pureharm-core"))
@@ -71,23 +70,22 @@ ThisBuild / spiewakMainBranches       := List("main")
 ThisBuild / Test / publishArtifact    := false
 
 ThisBuild / scalaVersion       := Scala213
-ThisBuild / crossScalaVersions := List(Scala213, Scala3RC1, Scala3RC2)
+ThisBuild / crossScalaVersions := List(Scala213, Scala3)
 
 //required for binary compat checks
 ThisBuild / versionIntroduced := Map(
-  Scala213  -> "0.1.0",
-  Scala3RC1 -> "0.1.0",
-  Scala3RC2 -> "0.2.0",
+  Scala213 -> "0.1.0",
+  Scala3   -> "0.3.0",
 )
 
 //=============================================================================
 //================================ Dependencies ===============================
 //=============================================================================
 // format: off
-val shapeless2V      = "2.3.3"    //https://github.com/milessabin/shapeless/releases
-val catsV            = "2.5.0"    //https://github.com/typelevel/cats/releases
-val sproutV          = "0.0.2"    //https://github.com/lorandszakacs/sprout/releases
-val munitCatsEffect  = "1.0.1"    //https://github.com/typelevel/munit-cats-effect/releases
+val shapeless2V         = "2.3.7"    //https://github.com/milessabin/shapeless/releases
+val catsV               = "2.6.1"    //https://github.com/typelevel/cats/releases
+val sproutV             = "0.0.5"    //https://github.com/lorandszakacs/sprout/releases
+val munitCatsEffect     = "1.0.5"    //https://github.com/typelevel/munit-cats-effect/releases
 // format: on
 //=============================================================================
 //============================== Project details ==============================
@@ -142,8 +140,10 @@ lazy val `core-anomaly` = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "pureharm-core-anomaly",
     libraryDependencies ++= Seq(
-      "org.typelevel" %%% "cats-core"           % catsV withSources (),
-      "org.typelevel" %%% "munit-cats-effect-2" % munitCatsEffect % Test withSources (),
+      // format: off
+      "org.typelevel"   %%% "cats-core"               % catsV                    withSources(),
+      "org.typelevel"   %%% "munit-cats-effect-2"     % munitCatsEffect   % Test withSources(),
+      // format: on
     ),
   )
 
@@ -164,8 +164,10 @@ lazy val `core-sprout` = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "pureharm-core-sprout",
     libraryDependencies ++= Seq(
-      "org.typelevel"     %%% "cats-core" % catsV   withSources (),
-      "com.lorandszakacs" %%% "sprout"    % sproutV withSources (),
+      // format: off
+      "org.typelevel"           %%% "cats-core"       % catsV           withSources(),
+      "com.lorandszakacs"       %%% "sprout"          % sproutV         withSources(),
+      // format: on
     ),
   )
 
