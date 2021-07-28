@@ -36,17 +36,17 @@ object NotImplementedCatastrophe extends CatastropheConstructors[NotImplementedC
   override def apply(id:       AnomalyID, message: String, causedBy: Throwable): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(id = id, message = message, causedBy = Option(causedBy))
 
-  override def apply(id:       AnomalyID, parameters: Anomaly.Parameters, causedBy: Throwable): NotImplementedCatastrophe =
+  override def apply(id: AnomalyID, parameters: Anomaly.Parameters, causedBy: Throwable): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(id = id, params = parameters, causedBy = Option(causedBy))
 
-  override def apply(message:  String, parameters:    Anomaly.Parameters, causedBy: Throwable): NotImplementedCatastrophe =
+  override def apply(message: String, parameters: Anomaly.Parameters, causedBy: Throwable): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(message = message, params = parameters, causedBy = Option(causedBy))
 
   override def apply(
-    id:                        AnomalyID,
-    message:                   String,
-    parameters:                Anomaly.Parameters,
-    causedBy:                  Throwable,
+    id:                       AnomalyID,
+    message:                  String,
+    parameters:               Anomaly.Parameters,
+    causedBy:                 Throwable,
   ): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(id = id, message = message, params = parameters, causedBy = Option(causedBy))
 
@@ -58,28 +58,28 @@ object NotImplementedCatastrophe extends CatastropheConstructors[NotImplementedC
       causedBy = Option(causedBy),
     )
 
-  override def apply(id:         AnomalyID):            NotImplementedCatastrophe =
+  override def apply(id:         AnomalyID): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(id = id)
 
-  override def apply(message:    String):               NotImplementedCatastrophe =
+  override def apply(message:    String): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(message = message)
 
   override def apply(parameters: Anomaly.Parameters): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(params = parameters)
 
-  override def apply(id:         AnomalyID, message: String): NotImplementedCatastrophe =
+  override def apply(id:         AnomalyID, message:    String):             NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(id = id, message = message)
 
-  override def apply(id:         AnomalyID, parameters: Anomaly.Parameters):       NotImplementedCatastrophe =
+  override def apply(id:         AnomalyID, parameters: Anomaly.Parameters): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(id = id, params = parameters)
 
   override def apply(message:    String, parameters:    Anomaly.Parameters): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(message = message, params = parameters)
 
-  override def apply(id:         AnomalyID, message: String, parameters: Anomaly.Parameters): NotImplementedCatastrophe =
+  override def apply(id: AnomalyID, message: String, parameters: Anomaly.Parameters): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(id = id, message = message, params = parameters)
 
-  override def apply(a:          AnomalyBase): NotImplementedCatastrophe =
+  override def apply(a:  AnomalyBase): NotImplementedCatastrophe =
     NotImplementedCatastropheImpl(
       id       = a.id,
       message  = a.message,
@@ -92,10 +92,10 @@ object NotImplementedCatastrophe extends CatastropheConstructors[NotImplementedC
 }
 
 final private[pureharm] case class NotImplementedCatastropheImpl(
-  override val id:       AnomalyID = NotImplementedCatastropheID,
-  override val message:  String = NotImplementedCatastrophe.NotImplementedCatastropheMsg,
+  override val id:       AnomalyID          = NotImplementedCatastropheID,
+  override val message:  String             = NotImplementedCatastrophe.NotImplementedCatastropheMsg,
   params:                Anomaly.Parameters = Anomaly.Parameters.empty,
-  override val causedBy: Option[Throwable] = None,
+  override val causedBy: Option[Throwable]  = None,
 ) extends NotImplementedCatastrophe(message, causedBy = causedBy) {
   override val parameters: Anomaly.Parameters = super.parameters ++ params
 }

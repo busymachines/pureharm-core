@@ -34,19 +34,19 @@ private[pureharm] case object CatastropheID extends AnomalyID with Product with 
 object Catastrophe extends CatastropheConstructors[Catastrophe] {
   private[pureharm] val CatastropheMsg = "Catastrophe"
 
-  override def apply(causedBy:   Throwable): Catastrophe =
+  override def apply(causedBy: Throwable): Catastrophe =
     CatastropheImpl(message = causedBy.getMessage, causedBy = Option(causedBy))
 
-  override def apply(id:         AnomalyID, message: String, causedBy: Throwable): Catastrophe =
+  override def apply(id:       AnomalyID, message:    String, causedBy:             Throwable): Catastrophe =
     CatastropheImpl(id = id, message = message, causedBy = Option(causedBy))
 
-  override def apply(id:         AnomalyID, parameters: Anomaly.Parameters, causedBy: Throwable):  Catastrophe =
+  override def apply(id:       AnomalyID, parameters: Anomaly.Parameters, causedBy: Throwable): Catastrophe =
     CatastropheImpl(id = id, params = parameters, causedBy = Option(causedBy))
 
-  override def apply(message:    String, parameters:    Anomaly.Parameters, causedBy: Throwable): Catastrophe =
+  override def apply(message:  String, parameters:    Anomaly.Parameters, causedBy: Throwable): Catastrophe =
     CatastropheImpl(message = message, params = parameters, causedBy = Option(causedBy))
 
-  override def apply(id:         AnomalyID, message:    String, parameters: Anomaly.Parameters, causedBy: Throwable): Catastrophe =
+  override def apply(id: AnomalyID, message: String, parameters: Anomaly.Parameters, causedBy: Throwable): Catastrophe =
     CatastropheImpl(id = id, message = message, params = parameters, causedBy = Option(causedBy))
 
   override def apply(a:          AnomalyBase, causedBy: Throwable): Catastrophe =
@@ -55,22 +55,22 @@ object Catastrophe extends CatastropheConstructors[Catastrophe] {
   override def apply(id:         AnomalyID): Catastrophe =
     CatastropheImpl(id = id)
 
-  override def apply(message:    String):               Catastrophe                  =
+  override def apply(message:    String): Catastrophe =
     CatastropheImpl(message = message)
 
   override def apply(parameters: Anomaly.Parameters): Catastrophe =
     CatastropheImpl(params = parameters)
 
-  override def apply(id:         AnomalyID, message: String): Catastrophe =
+  override def apply(id:         AnomalyID, message:    String): Catastrophe =
     CatastropheImpl(id = id, message = message)
 
-  override def apply(id:         AnomalyID, parameters: Anomaly.Parameters):          Catastrophe =
+  override def apply(id:         AnomalyID, parameters: Anomaly.Parameters): Catastrophe =
     CatastropheImpl(id = id, params = parameters)
 
   override def apply(message:    String, parameters:    Anomaly.Parameters): Catastrophe =
     CatastropheImpl(message = message, params = parameters)
 
-  override def apply(id:         AnomalyID, message: String, parameters: Anomaly.Parameters): Catastrophe =
+  override def apply(id:         AnomalyID, message:    String, parameters: Anomaly.Parameters): Catastrophe =
     CatastropheImpl(id = id, message = message, params = parameters)
 
   override def apply(a:          AnomalyBase): Catastrophe =
@@ -86,10 +86,10 @@ object Catastrophe extends CatastropheConstructors[Catastrophe] {
 }
 
 final private[pureharm] case class CatastropheImpl(
-  override val id:       AnomalyID = CatastropheID,
-  override val message:  String = Catastrophe.CatastropheMsg,
+  override val id:       AnomalyID          = CatastropheID,
+  override val message:  String             = Catastrophe.CatastropheMsg,
   params:                Anomaly.Parameters = Anomaly.Parameters.empty,
-  override val causedBy: Option[Throwable] = None,
+  override val causedBy: Option[Throwable]  = None,
 ) extends Catastrophe(message, causedBy = causedBy) {
   override val parameters: Anomaly.Parameters = super.parameters ++ params
 }

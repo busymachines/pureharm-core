@@ -27,16 +27,16 @@ object ForbiddenAnomaly
   extends ForbiddenAnomaly(MeaningfulAnomalies.ForbiddenMsg, None) with SingletonAnomalyProduct
   with AnomalyConstructors[ForbiddenAnomaly] {
 
-  override def apply(id:         AnomalyID):            ForbiddenAnomaly    =
+  override def apply(id:         AnomalyID): ForbiddenAnomaly =
     ForbiddenFailureImpl(id = id)
 
-  override def apply(message:    String):               ForbiddenAnomaly    =
+  override def apply(message:    String): ForbiddenAnomaly =
     ForbiddenFailureImpl(message = message)
 
   override def apply(parameters: Anomaly.Parameters): ForbiddenAnomaly =
     ForbiddenFailureImpl(params = parameters)
 
-  override def apply(id:         AnomalyID, message: String): ForbiddenAnomaly =
+  override def apply(id:         AnomalyID, message:    String): ForbiddenAnomaly =
     ForbiddenFailureImpl(id = id, message = message)
 
   override def apply(id:         AnomalyID, parameters: Anomaly.Parameters): ForbiddenAnomaly =
@@ -45,7 +45,7 @@ object ForbiddenAnomaly
   override def apply(message:    String, parameters:    Anomaly.Parameters): ForbiddenAnomaly =
     ForbiddenFailureImpl(message = message, params = parameters)
 
-  override def apply(id:         AnomalyID, message: String, parameters: Anomaly.Parameters): ForbiddenAnomaly =
+  override def apply(id:         AnomalyID, message:    String, parameters: Anomaly.Parameters): ForbiddenAnomaly =
     ForbiddenFailureImpl(id = id, message = message, params = parameters)
 
   override def apply(a:          AnomalyBase): ForbiddenAnomaly =
@@ -53,10 +53,10 @@ object ForbiddenAnomaly
 }
 
 final private[pureharm] case class ForbiddenFailureImpl(
-  override val id:       AnomalyID = ForbiddenAnomalyID,
-  override val message:  String = MeaningfulAnomalies.ForbiddenMsg,
+  override val id:       AnomalyID          = ForbiddenAnomalyID,
+  override val message:  String             = MeaningfulAnomalies.ForbiddenMsg,
   params:                Anomaly.Parameters = Anomaly.Parameters.empty,
-  override val causedBy: Option[Throwable] = None,
+  override val causedBy: Option[Throwable]  = None,
 ) extends ForbiddenAnomaly(message, causedBy) with Product with Serializable {
   override val parameters: Anomaly.Parameters = super.parameters ++ params
 }

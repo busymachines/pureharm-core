@@ -27,16 +27,16 @@ object DeniedAnomaly
   extends DeniedAnomaly(MeaningfulAnomalies.DeniedMsg, None) with SingletonAnomalyProduct
   with AnomalyConstructors[DeniedAnomaly] {
 
-  override def apply(id:         AnomalyID):            DeniedAnomaly       =
+  override def apply(id:         AnomalyID): DeniedAnomaly =
     DeniedAnomalyImpl(id = id)
 
-  override def apply(message:    String):               DeniedAnomaly       =
+  override def apply(message:    String): DeniedAnomaly =
     DeniedAnomalyImpl(message = message)
 
   override def apply(parameters: Anomaly.Parameters): DeniedAnomaly =
     DeniedAnomalyImpl(params = parameters)
 
-  override def apply(id:         AnomalyID, message: String): DeniedAnomaly =
+  override def apply(id:         AnomalyID, message:    String): DeniedAnomaly =
     DeniedAnomalyImpl(id = id, message = message)
 
   override def apply(id:         AnomalyID, parameters: Anomaly.Parameters): DeniedAnomaly =
@@ -45,7 +45,7 @@ object DeniedAnomaly
   override def apply(message:    String, parameters:    Anomaly.Parameters): DeniedAnomaly =
     DeniedAnomalyImpl(message = message, params = parameters)
 
-  override def apply(id:         AnomalyID, message: String, parameters: Anomaly.Parameters): DeniedAnomaly =
+  override def apply(id:         AnomalyID, message:    String, parameters: Anomaly.Parameters): DeniedAnomaly =
     DeniedAnomalyImpl(id = id, message = message, params = parameters)
 
   override def apply(a:          AnomalyBase): DeniedAnomaly =
@@ -53,10 +53,10 @@ object DeniedAnomaly
 }
 
 final private[pureharm] case class DeniedAnomalyImpl(
-  override val id:       AnomalyID = DeniedAnomalyID,
-  override val message:  String = MeaningfulAnomalies.DeniedMsg,
+  override val id:       AnomalyID          = DeniedAnomalyID,
+  override val message:  String             = MeaningfulAnomalies.DeniedMsg,
   params:                Anomaly.Parameters = Anomaly.Parameters.empty,
-  override val causedBy: Option[Throwable] = None,
+  override val causedBy: Option[Throwable]  = None,
 ) extends DeniedAnomaly(message, causedBy) with Product with Serializable {
   override val parameters: Anomaly.Parameters = super.parameters ++ params
 }

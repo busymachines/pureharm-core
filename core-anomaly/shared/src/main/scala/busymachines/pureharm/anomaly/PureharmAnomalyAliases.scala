@@ -18,8 +18,7 @@ package busymachines.pureharm.anomaly
 
 import busymachines.pureharm.anomaly
 
-/** Mix this into your app's "core" package to get all these nice little
-  * anomalies.
+/** Mix this into your app's "core" package to get all these nice little anomalies.
   */
 trait PureharmAnomalyAliases {
 
